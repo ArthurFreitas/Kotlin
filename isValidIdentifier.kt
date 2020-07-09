@@ -1,24 +1,12 @@
 fun isValidIdentifier(s: String): Boolean {
-    if (s.isEmpty())
-    	return false
-    
-    fun validStart(s: String): Boolean {
-    	if(s.startsWith("_"))
-        	return true
-        when (s){
-            in "a".."z", in "A".."Z" -> return true
-            else -> return false
-        }
-    }
-    
-    fun validDigits(s: String): Boolean {
-        for(char in s)
-        	if(char != '_' && char !in 'a'..'z' && char !in 'A'..'Z' && char !in '0'..'9')
-            	return false
-        return true
-    }
-    
-    return validStart(s) && validDigits(s)
+    if(s.isEmpty() || s[0].isDigit())
+        return false
+
+    fun isValidChar(c: Char) = c == '_' || c.isLetterOrDigit()
+    for(c in s)
+        if(!isValidChar(c))
+            return false
+    return true
 }
 
 fun main() {
